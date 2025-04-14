@@ -58,7 +58,7 @@ namespace IdentityServer.AuthServer
                     {
                         new Secret("secret".Sha256())
                     },
-                    AllowedScopes = { "api1.read", "api2.write","api2.update" }
+                    AllowedScopes = { "api1.read","api1.update", "api2.write","api2.update" }
                 },
             };
         }
