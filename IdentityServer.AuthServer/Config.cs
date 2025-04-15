@@ -1,4 +1,6 @@
 ﻿using IdentityServer4.Models;
+using IdentityServer4.Test;
+using System.Security.Claims;
 
 namespace IdentityServer.AuthServer
 {
@@ -22,7 +24,6 @@ namespace IdentityServer.AuthServer
             };
         }
 
-
         public static IEnumerable<ApiScope> GetApiScopes()
         {
             return new List<ApiScope>
@@ -34,6 +35,38 @@ namespace IdentityServer.AuthServer
                 new ApiScope("api2.read", "Read access to API 2"),
                 new ApiScope("api2.write", "Write access to API 2"),
                 new ApiScope("api2.update", "Update access to API 2")
+            };
+        }
+
+        public static IEnumerable<IdentityResource> GetIdentityResources()
+        {
+            return new List<IdentityResource>
+            {
+                new IdentityResources.OpenId(),
+                new IdentityResources.Profile(),
+                new IdentityResources.Email(),
+                new IdentityResources.Phone(),
+                new IdentityResources.Address()
+            };
+        }
+        public static IEnumerable<TestUser> GetUsers()
+        {
+            return new List<TestUser>()
+            {
+                new TestUser { SubjectId="1",Username="yasin42",  Password="1234",Claims= new List<Claim>(){
+                    new Claim("given_name","Yasin"),
+                    new Claim("family_name","ELMAS"),
+                   new Claim("country","Türkiye"),
+                      new Claim("city","Ankara"),
+                      new Claim("role","admin")
+                } },
+                 new TestUser{ SubjectId="2",Username="yasin23",  Password="1234",Claims= new List<Claim>(){
+                new Claim("given_name","Yasin"),
+                new Claim("family_name","BORAZAN"),
+                  new Claim("country","Türkiye"),
+                      new Claim("city","ELAZIĞ"),
+                    new Claim("role","customer")
+                 } }
             };
         }
         public static IEnumerable<Client> GetClients()
@@ -64,5 +97,6 @@ namespace IdentityServer.AuthServer
                 },
             };
         }
+
     }
 }
