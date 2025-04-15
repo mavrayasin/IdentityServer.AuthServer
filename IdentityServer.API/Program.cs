@@ -8,7 +8,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
         options.Authority = "https://localhost:7009"; // IdentityServer URL
-        options.Audience = "api1"; // API resource name
+        options.Audience = "resource_api1"; // API resource name
         options.RequireHttpsMetadata = false; // For development only, set to true in production
     });
 builder.Services.AddAuthorization(opts =>
