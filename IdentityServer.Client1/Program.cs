@@ -1,6 +1,19 @@
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddAuthentication(opts =>
+{
+    opts.DefaultScheme = "Cookies";
+    opts.DefaultChallengeScheme = "oidc";
+}).AddCookie("Cookies").AddOpenIdConnect("oidc", opts =>
+{
+    opts.SignInScheme = "Cookies";
+    opts.Authority = "https://localhost:7009"; // IdentityServer URL
+    opts.ClientId = "Client1-Mvc";
+    opts.ClientSecret = "secret";
+    opts.ResponseType = "code id_token";
+});
 // Add services to the container.
+
 builder.Services.AddControllersWithViews();
 builder.Configuration
        .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
@@ -21,7 +34,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
