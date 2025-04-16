@@ -9,7 +9,7 @@ namespace IdentityServer.Client1.Controllers
     {
         public IActionResult Index()
         {
-            ViewBag.Name = User.Claims.Where(x => x.Type == ClaimTypes.Name).FirstOrDefault();
+            ViewBag.Name = User.Claims.Where(x => x.Type == "given_name").FirstOrDefault()?.Value;
             return View();
         }
     }
