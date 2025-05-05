@@ -111,10 +111,22 @@ namespace IdentityServer.AuthServer
                     {
                         "https://localhost:7189/signin-oidc"
                     },
+                    PostLogoutRedirectUris =
+                       {
+                             "https://localhost:7189/signout-callback-oidc"
+                       },
                      AllowedScopes = {
                        IdentityServerConstants.StandardScopes.OpenId,
-                       IdentityServerConstants.StandardScopes.Profile,"api1.read"
-                       }
+                       IdentityServerConstants.StandardScopes.Profile,"api1.read",
+                       IdentityServerConstants.StandardScopes.OfflineAccess,
+                       },
+                     AccessTokenLifetime = 2*60*60,
+                     AllowOfflineAccess = true,
+                     RefreshTokenUsage = TokenUsage.ReUse, // or one time
+                     RefreshTokenExpiration =TokenExpiration.Absolute,
+                     AbsoluteRefreshTokenLifetime = (int)(DateTime.Now.AddDays(60)-DateTime.Now).TotalSeconds // 30 gün
+
+
                 },
 
 
