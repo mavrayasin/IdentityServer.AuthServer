@@ -47,7 +47,9 @@ namespace IdentityServer.AuthServer
                 new IdentityResources.Profile(),
                 new IdentityResources.Email(),
                 new IdentityResources.Phone(),
-                new IdentityResources.Address()
+                new IdentityResources.Address(),
+                new IdentityResource(){ Name = "CountryAndCity", DisplayName = "Country And City", Description = "Kullanıcının ülke ve şehir bilgisi",
+                    UserClaims = ["country", "city"] },
             };
         }
         public static IEnumerable<TestUser> GetUsers()
@@ -74,7 +76,7 @@ namespace IdentityServer.AuthServer
         {
             return new List<Client>
             {
-                new Client()
+                   new Client()
                 {
                     ClientId = "client1",
                     ClientName = "Client 1 app uygulaması",
@@ -96,7 +98,6 @@ namespace IdentityServer.AuthServer
                     },
                     AllowedScopes = { "api1.read","api1.update", "api2.write","api2.update" }
                 },
-
                    new Client()
                 {
                     ClientId = "Client1-Mvc",
@@ -119,13 +120,14 @@ namespace IdentityServer.AuthServer
                        IdentityServerConstants.StandardScopes.OpenId,
                        IdentityServerConstants.StandardScopes.Profile,"api1.read",
                        IdentityServerConstants.StandardScopes.OfflineAccess,
+                       "CountryAndCity",
                        },
                      AccessTokenLifetime = 2*60*60,
                      AllowOfflineAccess = true,
                      RefreshTokenUsage = TokenUsage.ReUse, // or one time
                      RefreshTokenExpiration =TokenExpiration.Absolute,
-                     AbsoluteRefreshTokenLifetime = (int)(DateTime.Now.AddDays(60)-DateTime.Now).TotalSeconds // 30 gün
-
+                     AbsoluteRefreshTokenLifetime = (int)(DateTime.Now.AddDays(60)-DateTime.Now).TotalSeconds, // 30 gün
+                     RequireConsent = true,// consent rıza onayı sonrası giriş 
 
                 },
 

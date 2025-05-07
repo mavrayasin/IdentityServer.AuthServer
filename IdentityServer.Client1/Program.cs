@@ -1,3 +1,5 @@
+﻿using Microsoft.AspNetCore.Authentication;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddAuthentication(opts =>
@@ -14,7 +16,10 @@ builder.Services.AddAuthentication(opts =>
     opts.GetClaimsFromUserInfoEndpoint = true;
     opts.SaveTokens = true;
     opts.Scope.Add("api1.read");
-    opts.Scope.Add("offline_access");
+    opts.Scope.Add("offline_access"); //consent ile birlikte çalışıyor bunu yoruma alırsak refresh token almadan yapar
+    opts.Scope.Add("CountryAndCity");
+    opts.ClaimActions.MapUniqueJsonKey("country", "country");
+    opts.ClaimActions.MapUniqueJsonKey("city", "city");
 });
 // Add services to the container.
 
