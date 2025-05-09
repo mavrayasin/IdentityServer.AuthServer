@@ -1,7 +1,11 @@
-﻿using Microsoft.AspNetCore.Authentication;
+﻿using IdentityServer.Client1.Services;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddScoped<IApiResourceHttpClient, ApiResourceHttpClient>();
 
 builder.Services.AddAuthentication(opts =>
 {
