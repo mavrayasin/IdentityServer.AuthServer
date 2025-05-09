@@ -135,10 +135,43 @@ namespace IdentityServer.AuthServer
                      RefreshTokenUsage = TokenUsage.ReUse, // or one time
                      RefreshTokenExpiration =TokenExpiration.Absolute,
                      AbsoluteRefreshTokenLifetime = (int)(DateTime.Now.AddDays(60)-DateTime.Now).TotalSeconds, // 30 gün
-                     RequireConsent = true,// consent rıza onayı sonrası giriş 
+                     RequireConsent = false,// consent rıza onayı sonrası giriş 
 
                 },
 
+                     new Client()
+                {
+                    ClientId = "Client2-Mvc",
+                    RequirePkce = false,
+                    ClientName = "Client 2 app mvc uygulaması",
+                    AllowedGrantTypes = GrantTypes.Hybrid,
+                    ClientSecrets =
+                    {
+                        new Secret("secret".Sha256())
+                    },
+                    RedirectUris =
+                    {
+                        "https://localhost:7044/signin-oidc"
+                    },
+                    PostLogoutRedirectUris =
+                       {
+                             "https://localhost:7044/signout-callback-oidc"
+                       },
+                     AllowedScopes = {
+                       IdentityServerConstants.StandardScopes.OpenId,
+                       IdentityServerConstants.StandardScopes.Profile,"api1.read",
+                       IdentityServerConstants.StandardScopes.OfflineAccess,
+                       "CountryAndCity",
+                       "Roles",
+                       },
+                     AccessTokenLifetime = 2*60*60,
+                     AllowOfflineAccess = true,
+                     RefreshTokenUsage = TokenUsage.ReUse, // or one time
+                     RefreshTokenExpiration =TokenExpiration.Absolute,
+                     AbsoluteRefreshTokenLifetime = (int)(DateTime.Now.AddDays(60)-DateTime.Now).TotalSeconds, // 30 gün
+                     RequireConsent = false,// consent rıza onayı sonrası giriş 
+
+                },
 
             };
         }
