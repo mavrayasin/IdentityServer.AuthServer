@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,7 +7,7 @@ builder.Services.AddAuthentication(opts =>
 {
     opts.DefaultScheme = "Cookies";
     opts.DefaultChallengeScheme = "oidc";
-}).AddCookie("Cookies").AddOpenIdConnect("oidc", opts =>
+}).AddCookie("Cookies", opts => { opts.AccessDeniedPath = "/Home/AccessDenied"; }).AddOpenIdConnect("oidc", opts =>
 {
     opts.SignInScheme = "Cookies";
     opts.Authority = "https://localhost:7009"; // IdentityServer URL
@@ -18,8 +19,16 @@ builder.Services.AddAuthentication(opts =>
     opts.Scope.Add("api1.read");
     opts.Scope.Add("offline_access"); //consent ile birlikte çalışıyor bunu yoruma alırsak refresh token almadan yapar
     opts.Scope.Add("CountryAndCity");
+    opts.Scope.Add("Roles");
     opts.ClaimActions.MapUniqueJsonKey("country", "country");
     opts.ClaimActions.MapUniqueJsonKey("city", "city");
+    opts.ClaimActions.MapUniqueJsonKey("role", "role");
+
+    opts.TokenValidationParameters = new TokenValidationParameters
+    {
+        NameClaimType = "name",
+        RoleClaimType = "role"
+    };
 });
 // Add services to the container.
 

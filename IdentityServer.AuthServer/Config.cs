@@ -50,6 +50,13 @@ namespace IdentityServer.AuthServer
                 new IdentityResources.Address(),
                 new IdentityResource(){ Name = "CountryAndCity", DisplayName = "Country And City", Description = "Kullanıcının ülke ve şehir bilgisi",
                     UserClaims = ["country", "city"] },
+                new IdentityResource()
+                {
+                    Name = "Roles",
+                    DisplayName = "Roles",
+                    Description = "Kullanıcının rolleri",
+                    UserClaims = new List<string> { "role" }
+                }
             };
         }
         public static IEnumerable<TestUser> GetUsers()
@@ -121,6 +128,7 @@ namespace IdentityServer.AuthServer
                        IdentityServerConstants.StandardScopes.Profile,"api1.read",
                        IdentityServerConstants.StandardScopes.OfflineAccess,
                        "CountryAndCity",
+                       "Roles",
                        },
                      AccessTokenLifetime = 2*60*60,
                      AllowOfflineAccess = true,
