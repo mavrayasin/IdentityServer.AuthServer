@@ -51,6 +51,8 @@ namespace IdentityServer.Client1.Controllers
             //var accessToken = await HttpContext.GetTokenAsync(OpenIdConnectParameterNames.AccessToken);
 
 
+            /// master commit 
+
             //httpClient.SetBearerToken(accessToken);
 
 
