@@ -54,6 +54,9 @@ namespace IdentityServer.Client1.Controllers
             //httpClient.SetBearerToken(accessToken);
 
 
+
+
+            /// asdsadsadsa
             //var response = await httpClient.GetAsync("https://localhost:7150/api/Products/GetProducts");
             var response = await httpClient.GetAsync("https://localhost:7150/api/Products/GetProducts");
 
