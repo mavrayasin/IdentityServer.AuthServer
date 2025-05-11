@@ -57,7 +57,7 @@ namespace IdentityServer.Client1.Controllers
 
 
 
-
+            // test commit 2
             /// asdsadsadsa
             //var response = await httpClient.GetAsync("https://localhost:7150/api/Products/GetProducts");
             var response = await httpClient.GetAsync("https://localhost:7150/api/Products/GetProducts");
