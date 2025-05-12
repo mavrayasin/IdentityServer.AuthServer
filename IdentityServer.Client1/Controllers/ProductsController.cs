@@ -51,15 +51,11 @@ namespace IdentityServer.Client1.Controllers
             //var accessToken = await HttpContext.GetTokenAsync(OpenIdConnectParameterNames.AccessToken);
 
 
-            /// master commit 
-            /// master commit 2
 
             //httpClient.SetBearerToken(accessToken);
 
 
 
-            // test commit 2
-            /// asdsadsadsa
             //var response = await httpClient.GetAsync("https://localhost:7150/api/Products/GetProducts");
             var response = await httpClient.GetAsync("https://localhost:7150/api/Products/GetProducts");
 
