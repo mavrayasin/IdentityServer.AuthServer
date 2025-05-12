@@ -1,9 +1,11 @@
 using IdentityServer.AuthServer;
 using IdentityServer.AuthServer.Models;
+using IdentityServer.AuthServer.Repository;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddScoped<ICustomUserRepository, CustomUserRepository>();
 builder.Services.AddDbContext<CustomDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("LocalDb")));
 // Add services to the container.
@@ -12,7 +14,7 @@ builder.Services.AddIdentityServer()
     .AddInMemoryApiScopes(Config.GetApiScopes())
     .AddInMemoryClients(Config.GetClients())
     .AddInMemoryIdentityResources(Config.GetIdentityResources())
-    .AddTestUsers(Config.GetUsers().ToList())
+    //.AddTestUsers(Config.GetUsers().ToList())
     .AddDeveloperSigningCredential() // This is for development purposes only. In production, use a proper signing certificate.
     ;
 

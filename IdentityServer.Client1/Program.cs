@@ -5,6 +5,7 @@ using Microsoft.IdentityModel.Tokens;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddHttpContextAccessor();
+builder.Services.AddHttpClient<HttpClient>();
 builder.Services.AddScoped<IApiResourceHttpClient, ApiResourceHttpClient>();
 
 builder.Services.AddAuthentication(opts =>
