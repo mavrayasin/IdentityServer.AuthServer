@@ -1,6 +1,7 @@
 using IdentityServer.AuthServer;
 using IdentityServer.AuthServer.Models;
 using IdentityServer.AuthServer.Repository;
+using IdentityServer.AuthServer.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,7 +16,9 @@ builder.Services.AddIdentityServer()
     .AddInMemoryClients(Config.GetClients())
     .AddInMemoryIdentityResources(Config.GetIdentityResources())
     //.AddTestUsers(Config.GetUsers().ToList())
-    .AddDeveloperSigningCredential() // This is for development purposes only. In production, use a proper signing certificate.
+    .AddDeveloperSigningCredential()
+    // This is for development purposes only. In production, use a proper signing certificate.
+    .AddProfileService<CustomProfileService>()
     ;
 
 // Add services to the container.

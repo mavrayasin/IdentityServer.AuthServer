@@ -25,6 +25,7 @@ builder.Services.AddAuthentication(opts =>
     opts.Scope.Add("offline_access"); //consent ile birlikte çalışıyor bunu yoruma alırsak refresh token almadan yapar
     opts.Scope.Add("CountryAndCity");
     opts.Scope.Add("Roles");
+    opts.Scope.Add("email");
     opts.ClaimActions.MapUniqueJsonKey("country", "country");
     opts.ClaimActions.MapUniqueJsonKey("city", "city");
     opts.ClaimActions.MapUniqueJsonKey("role", "role");

@@ -23,6 +23,9 @@ namespace IdentityServer.Client1.Controllers
         }
         public async Task<IActionResult> GetRefreshToken()
         {
+
+            //var userName = User.Claims.First(x => x.Type == "name").Value;
+            //var userName2 = User.Identity.Name;
             HttpClient httpClient = new();
 
             var disco = await httpClient.GetDiscoveryDocumentAsync("https://localhost:7009");

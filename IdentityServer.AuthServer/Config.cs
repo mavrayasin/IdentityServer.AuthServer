@@ -124,6 +124,7 @@ namespace IdentityServer.AuthServer
                              "https://localhost:7189/signout-callback-oidc"
                        },
                      AllowedScopes = {
+                       IdentityServerConstants.StandardScopes.Email,
                        IdentityServerConstants.StandardScopes.OpenId,
                        IdentityServerConstants.StandardScopes.Profile,"api1.read",
                        IdentityServerConstants.StandardScopes.OfflineAccess,
