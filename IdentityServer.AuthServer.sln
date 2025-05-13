@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35931.197 d17.13
+VisualStudioVersion = 17.13.35931.197
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityServer.AuthServer", "IdentityServer.AuthServer\IdentityServer.AuthServer.csproj", "{C8FDDFA6-A2C9-4E8A-AA23-370A9CACD4AB}"
 EndProject
@@ -17,6 +17,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		Ports.txt = Ports.txt
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityServer-IdentityAPI.AuthServer", "IdentityServer-IdentityAPI.AuthServer\IdentityServer-IdentityAPI.AuthServer.csproj", "{13DD33A1-9523-795A-C4D3-47A5D1C5940F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -44,6 +46,10 @@ Global
 		{3237E972-DE7B-45D3-9DB4-52CE5ACBBB87}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3237E972-DE7B-45D3-9DB4-52CE5ACBBB87}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3237E972-DE7B-45D3-9DB4-52CE5ACBBB87}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13DD33A1-9523-795A-C4D3-47A5D1C5940F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13DD33A1-9523-795A-C4D3-47A5D1C5940F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13DD33A1-9523-795A-C4D3-47A5D1C5940F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13DD33A1-9523-795A-C4D3-47A5D1C5940F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
