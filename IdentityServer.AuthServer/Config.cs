@@ -198,7 +198,7 @@ namespace IdentityServer.AuthServer
                               "http://localhost:4200"
                           },
                      },
-                                    new Client()
+                     new Client()
                  {
                      ClientId = "Client1-ResourceOwner-Mvc",
 
