@@ -197,7 +197,21 @@ namespace IdentityServer.AuthServer
                           PostLogoutRedirectUris =                 {
                               "http://localhost:4200"
                           },
-                     }
+                     },
+                                    new Client()
+                 {
+                     ClientId = "Client1-ResourceOwner-Mvc",
+
+                    ClientName="Client 1 app  mvc uygulaması",
+                   ClientSecrets=new[] {new Secret("secret".Sha256())},
+                   AllowedGrantTypes= GrantTypes.ResourceOwnerPassword,
+                   AllowedScopes = { IdentityServerConstants.StandardScopes.Email, IdentityServerConstants.StandardScopes.OpenId, IdentityServerConstants.StandardScopes.Profile, "api1.read",IdentityServerConstants.StandardScopes.OfflineAccess,"CountryAndCity","Roles"},
+                   AccessTokenLifetime=2*60*60,
+                   AllowOfflineAccess=true,
+                   RefreshTokenUsage=TokenUsage.ReUse,
+                   RefreshTokenExpiration=TokenExpiration.Absolute,
+                   AbsoluteRefreshTokenLifetime=(int) (DateTime.Now.AddDays(60)-DateTime.Now).TotalSeconds,
+        },
 
             };
         }

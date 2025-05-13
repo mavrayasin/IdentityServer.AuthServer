@@ -19,6 +19,7 @@ builder.Services.AddIdentityServer()
     .AddDeveloperSigningCredential()
     // This is for development purposes only. In production, use a proper signing certificate.
     .AddProfileService<CustomProfileService>()
+    .AddResourceOwnerValidator<ResourceOwnerPasswordValidator>()
     ;
 
 // Add services to the container.

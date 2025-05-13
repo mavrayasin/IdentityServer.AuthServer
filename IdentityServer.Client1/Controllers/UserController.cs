@@ -16,10 +16,11 @@ namespace IdentityServer.Client1.Controllers
             ViewBag.Name = User.Claims.Where(x => x.Type == "given_name").FirstOrDefault()?.Value;
             return View();
         }
-        public async Task LogOut()
+        public async Task<IActionResult> LogOut()
         {
             await HttpContext.SignOutAsync("Cookies");
-            await HttpContext.SignOutAsync("oidc");
+            //await HttpContext.SignOutAsync("oidc");
+            return RedirectToAction("Index", "Home");
         }
         public async Task<IActionResult> GetRefreshToken()
         {
