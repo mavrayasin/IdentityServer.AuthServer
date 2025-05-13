@@ -1,7 +1,9 @@
-using IdentityServer.AuthServer;
+﻿using IdentityServer.AuthServer;
 using IdentityServer.AuthServer.Models;
 using IdentityServer.AuthServer.Repository;
+using IdentityServer.AuthServer.Seeds;
 using IdentityServer.AuthServer.Services;
+using IdentityServer4.EntityFramework.DbContexts;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,12 +11,27 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddScoped<ICustomUserRepository, CustomUserRepository>();
 builder.Services.AddDbContext<CustomDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("LocalDb")));
+
+var assemblyName = typeof(Program).Assembly.GetName().Name;
+
 // Add services to the container.
 builder.Services.AddIdentityServer()
-    .AddInMemoryApiResources(Config.GetApiResources())
-    .AddInMemoryApiScopes(Config.GetApiScopes())
-    .AddInMemoryClients(Config.GetClients())
-    .AddInMemoryIdentityResources(Config.GetIdentityResources())
+    .AddConfigurationStore(opts =>
+    {
+        opts.ConfigureDbContext = b => b.UseSqlServer(builder.Configuration.GetConnectionString("LocalDb"),
+     sql => sql.MigrationsAssembly(assemblyName));
+    })
+    .AddOperationalStore(opts =>
+    {
+        opts.ConfigureDbContext = b => b.UseSqlServer(builder.Configuration.GetConnectionString("LocalDb"),
+     sql => sql.MigrationsAssembly(assemblyName));
+        opts.EnableTokenCleanup = true;
+        opts.TokenCleanupInterval = 30; // every 30 seconds (default is 3600 seconds)
+    })
+    //.AddInMemoryApiResources(Config.GetApiResources())
+    //.AddInMemoryApiScopes(Config.GetApiScopes())
+    //.AddInMemoryClients(Config.GetClients())
+    //.AddInMemoryIdentityResources(Config.GetIdentityResources())
     //.AddTestUsers(Config.GetUsers().ToList())
     .AddDeveloperSigningCredential()
     // This is for development purposes only. In production, use a proper signing certificate.
@@ -26,6 +43,15 @@ builder.Services.AddIdentityServer()
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
+
+
+// Seed işlemi
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var context = services.GetRequiredService<ConfigurationDbContext>();
+    IdentityServerSeedData.SeedData(context);
+}
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <PackageReference Include="Dangl.IdentityServer4" Version="4.2.1" />
+    <PackageReference Include="Dangl.IdentityServer4.EntityFramework" Version="4.2.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.15" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.15" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.15">
